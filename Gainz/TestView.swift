@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TestView.swift
 //  Gainz
 //
 //  Created by Tiffany Ho on 12/16/19.
@@ -8,15 +8,16 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct TestView: View {
     var body: some View {
-        Text("Hello World")
+        Image("heart")
+        .resizable()
+            .frame(width: 50, height: 50)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TestView()
     }
 }

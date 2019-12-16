@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  GoalsView.swift
 //  Gainz
 //
 //  Created by Tiffany Ho on 12/16/19.
@@ -8,15 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct GoalsView: View {
     var body: some View {
-        Text("Hello World")
+        Text("Goals View")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct GoalsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        GoalsView()
     }
 }

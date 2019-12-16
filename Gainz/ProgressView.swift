@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ProgressView.swift
 //  Gainz
 //
 //  Created by Tiffany Ho on 12/16/19.
@@ -8,15 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct ProgressView: View {
     var body: some View {
-        Text("Hello World")
+        Text("Progress View")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ProgressView()
     }
 }
