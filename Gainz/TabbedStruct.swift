@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct StructTab: View {
-    @State var selected = 0
+struct TabbedStruct: View {
+    @State private var selected = 0
     
     var body: some View {
         TabView(selection: $selected){
@@ -47,6 +47,6 @@ struct StructTab: View {
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        StructTab()
+        TabbedStruct()
     }
 }

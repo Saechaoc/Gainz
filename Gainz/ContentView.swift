@@ -11,7 +11,15 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        Text("Hello World")
+        //TabbedStruct()
+        VStack {
+            List(exerciseData) { exercise in
+                VStack{
+                    Text(exercise.name)
+                }
+            }
+        }
+        
     }
 }
 
