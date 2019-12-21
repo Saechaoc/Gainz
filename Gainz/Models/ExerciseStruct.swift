@@ -29,3 +29,4 @@ struct ExerciseStruct: Codable, Identifiable {
     var pictureOne: URL
     var pictureTwo: URL
 }
+

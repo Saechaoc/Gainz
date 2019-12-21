@@ -1,5 +1,5 @@
 //
-//  WorkoutView.swift
+//  TabView.swift
 //  Gainz
 //
 //  Created by Tiffany Ho on 12/16/19.
@@ -8,14 +8,16 @@
 
 import SwiftUI
 
-struct WorkoutView: View {
+struct TabbedView: View {
+    var exercise : ExerciseStruct
+    
     var body: some View {
-        Text("Workout View")
+        Text(exercise.name)
     }
 }
 
-struct WorkoutView_Previews: PreviewProvider {
+struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutView()
+        TabbedView(exercise: exerciseData[0])
     }
 }

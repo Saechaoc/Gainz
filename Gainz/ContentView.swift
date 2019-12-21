@@ -6,20 +6,48 @@
 //  Copyright © 2019 Chris Saechao. All rights reserved.
 //
 
+/*
+ To Do:
+ Create search by functionality: All Exercises (Ordered), By Muscle, Category
+ */
+
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+    @State var selected = 0
     
     var body: some View {
-        //TabbedStruct()
-        VStack {
-            List(exerciseData) { exercise in
-                VStack{
-                    Text(exercise.name)
+        TabView(selection: $selected){
+            GoalsView().tabItem {
+                VStack {
+                    Image("star")
+                    Text("Goals")
                 }
-            }
+            }.tag(0)
+            
+            RoutineView().tabItem {
+                VStack {
+                    Image("routine")
+                    Text("Routines")
+                }
+            }.tag(1)
+            
+            WorkoutView().tabItem {
+                VStack {
+                    Image("heart")
+                    Text("Workout")
+                }
+            }.tag(2)
+            
+            ProgressView().tabItem {
+                VStack {
+                    Image("progress")
+                    Text("Progress")
+                }
+            }.tag(3)
+            
         }
-        
     }
 }
 
