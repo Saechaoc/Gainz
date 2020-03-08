@@ -13,7 +13,11 @@
         Target Muscles
         Workout GIF/ Animation
         Workout Steps
- */
+
+What if my user is offline?
+*/
+
+
 
 import SwiftUI
 
@@ -29,10 +33,14 @@ struct exerciseDetails: View {
                 Text(exercise.name)
                     .font(.title)
                 HStack (alignment: .top, spacing: 100) {
-                    ImageView(exercise.pictureOne.absoluteString, width: 100, height: 100)
-                    ImageView(exercise.pictureTwo.absoluteString, width: 100, height: 100)
+                    ForEach(exercise.imgs, id: \.self) {
+                        ImageView($0.absoluteString, width: 100, height: 100)
+                    }
                 }
-                Text(exercise.description)
+                
+                ForEach(exercise.instructions, id: \.self) {
+                    Text($0)
+                }
                 .padding()
                 Spacer()
             }

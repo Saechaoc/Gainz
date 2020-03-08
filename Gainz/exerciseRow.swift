@@ -20,8 +20,9 @@ struct exerciseRow: View {
     //To Do: Create a sample image that loads
     var body: some View {
         HStack {
-            ImageView(exercise.pictureOne.absoluteString, width: 50, height: 50)
-            ImageView(exercise.pictureTwo.absoluteString, width: 50, height: 50)
+            ForEach(exercise.imgs, id: \.self) {
+                ImageView($0.absoluteString, width: 50, height: 50)
+            }
             VStack (alignment: .leading) {
                 Text(exercise.name)
             }
