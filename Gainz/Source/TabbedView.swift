@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TabbedView: View {
-    var exercise : ExerciseStruct
+    var exercise : Exercise
     
     var body: some View {
         Text(exercise.name)

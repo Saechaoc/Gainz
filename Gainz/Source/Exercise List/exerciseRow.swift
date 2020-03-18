@@ -14,15 +14,12 @@
 import SwiftUI
 
 struct exerciseRow: View {
-    //The exercisestruct is a stored property of exerciseRow
-    var exercise: ExerciseStruct
+    //The Exercise is a stored property of exerciseRow
+    var exercise: Exercise
     
     //To Do: Create a sample image that loads
     var body: some View {
         HStack {
-            ForEach(exercise.imgs, id: \.self) {
-                ImageView($0.absoluteString, width: 50, height: 50)
-            }
             VStack (alignment: .leading) {
                 Text(exercise.name)
             }
@@ -54,7 +51,7 @@ struct ImageView: View {
 }
 
 
-//Preview won't work unless there is an instance provided of exerciseStruct
+//Preview won't work unless there is an instance provided of Exercise
 struct exerciseRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {

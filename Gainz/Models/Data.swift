@@ -9,9 +9,9 @@
 import SwiftUI
 import UIKit
 
-var exerciseData : [ExerciseStruct] = load("exerciseData.json")
+var exerciseData : [Exercise] = load("deduped.json")
 
-func load(_ filename: String) -> [ExerciseStruct] {
+func load(_ filename: String) -> [Exercise] {
     let data: Data
     
     guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
@@ -27,9 +27,9 @@ func load(_ filename: String) -> [ExerciseStruct] {
     
     do {
         let decoder = JSONDecoder()
-        let myData =  try decoder.decode([ExerciseStruct].self, from: data)
+        let myData =  try decoder.decode([Exercise].self, from: data)
         return myData.sorted(by: {$0.name < $1.name})
     } catch {
-        fatalError("Couldn't parse \(filename) as \([ExerciseStruct].self):\n\(error)")
+        fatalError("Couldn't parse \(filename) as \([Exercise].self):\n\(error)")
     }
 }

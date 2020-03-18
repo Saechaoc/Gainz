@@ -14,15 +14,14 @@
         Workout GIF/ Animation
         Workout Steps
 
-What if my user is offline?
+What if my user is offline? Download Images onto user device.
+ 
 */
-
-
 
 import SwiftUI
 
 struct exerciseDetails: View {
-    var exercise: ExerciseStruct
+    var exercise: Exercise
     
     var body: some View {
         VStack {
@@ -34,7 +33,7 @@ struct exerciseDetails: View {
                     .font(.title)
                 HStack (alignment: .top, spacing: 100) {
                     ForEach(exercise.imgs, id: \.self) {
-                        ImageView($0.absoluteString, width: 100, height: 100)
+                        ImageView($0, width: 100, height: 100)
                     }
                 }
                 
