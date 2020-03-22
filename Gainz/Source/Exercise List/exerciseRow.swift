@@ -52,10 +52,10 @@ struct ImageView: View {
 
 
 //Preview won't work unless there is an instance provided of Exercise
-struct exerciseRow_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            exerciseRow(exercise: exerciseData[0])
-        }
-    }
-}
+//struct exerciseRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            exerciseRow(exercise: exerciseData[0])
+//        }
+//    }
+//}

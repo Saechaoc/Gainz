@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 //Codable = Decodable & Encodable
 
@@ -23,7 +24,8 @@ import SwiftUI
  Instead of requiring implementors to conform to Equatable, or exposing some form of unique identifier (like a UUID), you can use techniques like the === operator and the ObjectIdentifier type to quickly and uniquely identify objects without much extra code.
  */
 
-struct Exercise: Codable {
+struct Exercise: Codable, Hashable {
+    
     let name: String
     var type: String
     var muscleUsed: String
@@ -88,4 +90,78 @@ struct Exercise: Codable {
 
 extension Exercise: Identifiable {
     var id: String { name }
+    
+    func toCoreData(context: NSManagedObjectContext) throws -> Void {
+        //Create entity description
+        let newExercise = Exercises(context: context)
+        
+        newExercise.setValue(self.name, forKey: name)
+        newExercise.setValue(self.type, forKey: type)
+        newExercise.setValue(self.muscleUsed, forKey: muscleUsed)
+        newExercise.setValue(self.equipment, forKey: equipment ?? "Other")
+        newExercise.setValue(self.level, forKey: level)
+        newExercise.setValue(self.rating, forKey: rating)
+        newExercise.setValue(self.muscleChartImg, forKey: muscleChartImg)
+        newExercise.imgs = self.imgs
+        newExercise.instructions = self.instructions
+
+//        // Create the NSManagedObject
+//        let managedObject = NSManagedObject(entity: desc, insertInto: context)
+//
+//        // Create a Mirror
+//        let mirror = Mirror(reflecting: self)
+//
+//        // Make sure we're analyzing a struct
+//        guard mirror.displayStyle! == .struct else { throw SerializationError.structRequired }
+//
+//        for case let (label?, anyValue) in mirror.children {
+//            managedObject.setValue(anyValue, forKey: label)
+//        }
+
+        do {
+            try context.save()
+        }catch {
+            print("Could not save")
+        }
+    }
 }
+
+
+protocol StructDecoder {
+    //Name of the entity
+    static var Exercise: String { get }
+    func toCoreData(context: NSManagedObjectContext) throws -> NSManagedObject
+}
+
+extension StructDecoder {
+    func toCoreData(context: NSManagedObjectContext) throws -> NSManagedObject {
+        //Create entity description
+        let desc = Exercises.entity()
+
+        // Create the NSManagedObject
+        let managedObject = NSManagedObject(entity: desc, insertInto: context)
+
+        // Create a Mirror
+        let mirror = Mirror(reflecting: self)
+
+        // Make sure we're analyzing a struct
+        guard mirror.displayStyle! == .struct else { throw SerializationError.structRequired }
+
+        for case let (label?, anyValue) in mirror.children {
+            managedObject.setValue(anyValue, forKey: label)
+        }
+
+        return managedObject
+    }
+}
+
+enum SerializationError: Error {
+    // We only support structs
+    case structRequired
+    // The entity does not exist in the Core Data Model
+    case unknownEntity(name: String)
+    // The provided type cannot be stored in core data
+    case unsupportedSubType(label: String?)
+}
+
+

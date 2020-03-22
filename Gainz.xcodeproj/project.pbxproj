@@ -25,10 +25,13 @@
 		2373305F23A83B4600D743DA /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2373305E23A83B4600D743DA /* RoutineView.swift */; };
 		2373306323A83B7F00D743DA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2373306223A83B7F00D743DA /* ProgressView.swift */; };
 		2373306523A83BC100D743DA /* TabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2373306423A83BC100D743DA /* TabbedView.swift */; };
-		835D1E5124208F7D008B74DF /* deduped.json in Resources */ = {isa = PBXBuildFile; fileRef = 835D1E5024208F7D008B74DF /* deduped.json */; };
 		835D1E5924209BA4008B74DF /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835D1E5824209BA4008B74DF /* Searchbar.swift */; };
 		837DF2E82420798100B8AFBE /* Routine+Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF2E72420798100B8AFBE /* Routine+Program.swift */; };
 		837DF2EB24207E8B00B8AFBE /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF2EA24207E8B00B8AFBE /* WorkoutView.swift */; };
+		83C3BBF62422343F00D3469B /* deduped.json in Resources */ = {isa = PBXBuildFile; fileRef = 83C3BBF52422343E00D3469B /* deduped.json */; };
+		83C3BBFE24231C9100D3469B /* Exercises+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3BBFC24231C9100D3469B /* Exercises+CoreDataClass.swift */; };
+		83C3BBFF24231C9100D3469B /* Exercises+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3BBFD24231C9100D3469B /* Exercises+CoreDataProperties.swift */; };
+		83C3BC012425F66A00D3469B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3BC002425F66A00D3469B /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,10 +55,13 @@
 		2373305E23A83B4600D743DA /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		2373306223A83B7F00D743DA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		2373306423A83BC100D743DA /* TabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedView.swift; sourceTree = "<group>"; };
-		835D1E5024208F7D008B74DF /* deduped.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = deduped.json; path = Gainz/deduped.json; sourceTree = SOURCE_ROOT; };
 		835D1E5824209BA4008B74DF /* Searchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
 		837DF2E72420798100B8AFBE /* Routine+Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+Program.swift"; sourceTree = "<group>"; };
 		837DF2EA24207E8B00B8AFBE /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		83C3BBF52422343E00D3469B /* deduped.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deduped.json; sourceTree = "<group>"; };
+		83C3BBFC24231C9100D3469B /* Exercises+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercises+CoreDataClass.swift"; sourceTree = "<group>"; };
+		83C3BBFD24231C9100D3469B /* Exercises+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercises+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83C3BC002425F66A00D3469B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 		231AB43D23A99A3900C68241 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				83C3BBFB2422FBBA00D3469B /* Core Data */,
 				231AB43B23A9997F00C68241 /* ImageRequest.swift */,
 				231AB43E23A99A8D00C68241 /* Data.swift */,
 			);
@@ -91,7 +98,7 @@
 		231AB44023A99AE800C68241 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				835D1E5024208F7D008B74DF /* deduped.json */,
+				83C3BBF52422343E00D3469B /* deduped.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -171,6 +178,16 @@
 			path = "Exercise List";
 			sourceTree = "<group>";
 		};
+		83C3BBFB2422FBBA00D3469B /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				83C3BC002425F66A00D3469B /* CoreDataStack.swift */,
+				83C3BBFC24231C9100D3469B /* Exercises+CoreDataClass.swift */,
+				83C3BBFD24231C9100D3469B /* Exercises+CoreDataProperties.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,8 +248,8 @@
 			files = (
 				2373305323A81BF700D743DA /* LaunchScreen.storyboard in Resources */,
 				2373305023A81BF700D743DA /* Preview Assets.xcassets in Resources */,
+				83C3BBF62422343F00D3469B /* deduped.json in Resources */,
 				2373304D23A81BF700D743DA /* Assets.xcassets in Resources */,
-				835D1E5124208F7D008B74DF /* deduped.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,12 +260,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C3BC012425F66A00D3469B /* CoreDataStack.swift in Sources */,
 				231AB44623AAE64E00C68241 /* ImageLoader.swift in Sources */,
+				83C3BBFE24231C9100D3469B /* Exercises+CoreDataClass.swift in Sources */,
 				2373306523A83BC100D743DA /* TabbedView.swift in Sources */,
 				837DF2E82420798100B8AFBE /* Routine+Program.swift in Sources */,
 				837DF2EB24207E8B00B8AFBE /* WorkoutView.swift in Sources */,
 				231AB44E23ADA6E600C68241 /* WorkoutGenerator.swift in Sources */,
 				835D1E5924209BA4008B74DF /* Searchbar.swift in Sources */,
+				83C3BBFF24231C9100D3469B /* Exercises+CoreDataProperties.swift in Sources */,
 				231AB43C23A9997F00C68241 /* ImageRequest.swift in Sources */,
 				231AB44423AAC7EB00C68241 /* exerciseRow.swift in Sources */,
 				2373304923A81BDE00D743DA /* Gainz.xcdatamodeld in Sources */,

@@ -7,27 +7,58 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct WorkoutView: View {
+    //@FetchRequest(entity: Exercises.entity(), sortDescriptors: []) var exerciseData: FetchedResults<Exercises>
     @State private var searchText = ""
-//    @FetchRequest(entity: Exercise.entity(), sortDescriptors: <#T##[NSSortDescriptor]#>)
+    var fetched = FetchJSON()
+    @Environment(\.managedObjectContext) var context
     
-    func addItem() {
-        exerciseData.append(Exercise(name: "1 Exercise", type: "test", muscleUsed: "Test", equipment: "Test", level: "Test", rating: "1.0", imgs:["https://www.bodybuilding.com/images/2020/xdb/originals/xdb-129s-landmine-twist-m1-16x9.jpg","https://www.bodybuilding.com/images/2020/xdb/originals/xdb-129s-landmine-twist-m3-16x9.jpg"], muscleChartImg: "Test.com", instructions: ["Instructions"]))
+    func createExerciseEntity(exercise: Exercise) -> NSManagedObject? {
+        
+        if let exerciseEntity = NSEntityDescription.insertNewObject(forEntityName: "Exercises", into: self.context) as? Exercises {
+            
+            exerciseEntity.name = exercise.name
+            exerciseEntity.type = exercise.type
+            exerciseEntity.muscleUsed = exercise.muscleUsed
+            exerciseEntity.equipment = exercise.equipment
+            exerciseEntity.level = exercise.level
+            exerciseEntity.rating = exercise.rating
+            exerciseEntity.muscleChartImg = exercise.muscleChartImg
+            exerciseEntity.imgs = exercise.imgs
+            exerciseEntity.instructions = exercise.instructions
+            
+            return exerciseEntity
+        }
+        
+        return nil
+    }
+    
+    func saveToCoreData() {
+        for exercise in fetched.exerciseData {
+            _ = self.createExerciseEntity(exercise: exercise)
+        }
+        
+        do {
+            try self.context.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print("saved to core data")
     }
     
     var body: some View {
-        
+//        Text("Test")
         NavigationView {
-            List(exerciseData) { exercise in
+            List(fetched.exerciseData, id: \.self) { exercise in
+
                 NavigationLink(destination: exerciseDetails(exercise: exercise)) {
                     exerciseRow(exercise:exercise)
                 }
             }
             .navigationBarTitle(Text("Exercises"))
-        }.onAppear {
-            self.addItem()
-        }
+        }.onAppear(perform: self.saveToCoreData)
     }
 }
 

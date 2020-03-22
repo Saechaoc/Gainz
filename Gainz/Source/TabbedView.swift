@@ -16,8 +16,3 @@ struct TabbedView: View {
     }
 }
 
-struct TabView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabbedView(exercise: exerciseData[0])
-    }
-}

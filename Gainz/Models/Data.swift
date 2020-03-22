@@ -7,10 +7,13 @@
 //
 
 import SwiftUI
-import UIKit
+import CoreData
 
-var exerciseData : [Exercise] = load("deduped.json")
+//var exerciseData : [Exercise] = FetchJSON().exerciseData
 
+//https://raw.githubusercontent.com/Saechaoc/Gainz/master/Gainz/Resources/deduped.json
+
+//Loading local file
 func load(_ filename: String) -> [Exercise] {
     let data: Data
     
@@ -33,3 +36,69 @@ func load(_ filename: String) -> [Exercise] {
         fatalError("Couldn't parse \(filename) as \([Exercise].self):\n\(error)")
     }
 }
+
+class FetchJSON: ObservableObject {
+    @Published var exerciseData = [Exercise]()
+    static var sharedInstance = FetchJSON()
+    var context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+    
+    
+    init() {
+        guard let url = URL(string: "https://raw.githubusercontent.com/Saechaoc/Gainz/master/Gainz/Resources/deduped.json")
+            else {
+                return
+        }
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) {(data, response, error) in
+            do {
+                if let fetchData = data {
+                    // 3.
+                    let decodedData = try JSONDecoder().decode([Exercise].self, from: fetchData)
+                    DispatchQueue.main.async {
+                        self.exerciseData = decodedData
+                    }
+                } else {
+                    print("No data")
+                }
+            } catch {
+                print("Error")
+            }
+        }.resume()
+    }
+    
+    func createExerciseEntity(exercise: Exercise) -> NSManagedObject? {
+        
+        if let exerciseEntity = NSEntityDescription.insertNewObject(forEntityName: "Exercises", into: context) as? Exercises {
+            
+            exerciseEntity.name = exercise.name
+            exerciseEntity.type = exercise.type
+            exerciseEntity.muscleUsed = exercise.muscleUsed
+            exerciseEntity.equipment = exercise.equipment
+            exerciseEntity.level = exercise.level
+            exerciseEntity.rating = exercise.rating
+            exerciseEntity.muscleChartImg = exercise.muscleChartImg
+            exerciseEntity.imgs = exercise.imgs
+            exerciseEntity.instructions = exercise.instructions
+            
+            return exerciseEntity
+        }
+        
+        return nil
+    }
+    
+    func saveToCoreData() {
+        for exercise in exerciseData {
+            _ = self.createExerciseEntity(exercise: exercise)
+        }
+        
+        do {
+            try context.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print("saved to core data")
+    }
+}
+
+

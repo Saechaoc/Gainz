@@ -48,10 +48,10 @@ struct exerciseDetails: View {
     }
 }
 
-struct exerciseDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            exerciseDetails(exercise: exerciseData[0])
-        }
-    }
-}
+//struct exerciseDetails_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            exerciseDetails(exercise: exerciseData[0])
+//        }
+//    }
+//}
